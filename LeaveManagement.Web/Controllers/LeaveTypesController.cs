@@ -27,7 +27,7 @@ namespace LeaveManagement.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var leaveTypes = await leaveTypeRepository.GetAllAsync();
-              if (leaveTypes != null)
+            if (leaveTypes != null)
             {
                 var leaveTypesVM = mapper.Map<List<LeaveTypeVM>>(leaveTypes);
                 return View(leaveTypesVM);
