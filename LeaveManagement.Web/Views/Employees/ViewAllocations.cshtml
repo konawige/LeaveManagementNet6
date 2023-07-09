@@ -1,0 +1,66 @@
+﻿@model LeaveManagement.Web.Models.EmployeeAllocationVM
+
+@{
+    ViewData["Title"] = "ViewAllocations";
+}
+
+<h1>ViewAllocations for @Model.Firstname @Model.Lastname</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateJoined)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateJoined)
+        </dd>
+    </dl>
+</div>
+<hr/>
+
+<div class="card">
+    <h4>Leave Allocations</h4>
+    <div class="card-header">
+        Featured
+    </div>
+    <ul class="list-group list-group-flush">
+        @foreach(var allocation in Model.LeaveAllocations)
+        {
+            <li class="list-group-item">
+                <h6>@allocation.LeaveType.Name
+                    <button type="button" class="btn btn-primary">
+                        Allocation Days <span class="badge bg-secondary">@allocation.LeaveType.DefaultDays</span>
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Remaining Days <span class="badge bg-secondary">@allocation.NumberOfDays</span>
+                    </button>
+                    <a class="btn btn-warning" asp-action="EditAllocation" asp-route-id="@allocation.Id"><i class="fas fa-pencil-alt"></i>Edit allocation</a>
+                </h6>
+                
+            </li>
+        }
+              
+    </ul>
+</div>
+<div>|
+    <a asp-action="Index">Back to List</a>
+</div>
